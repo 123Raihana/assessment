@@ -1,26 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import SearchBar from './components/SearchBar';
+import Suggestions from './components/Suggestions';
 
-function App() {
+
+const App: React.FC = () => {
+  const handleClearSearch = () => {
+    console.log('Search bar cleared');
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Task 1</h1>
+      <SearchBar />
+      <h1>Task 2</h1>
+      <Suggestions dropdown={["child"]} onClear={handleClearSearch} />
     </div>
   );
-}
+};
 
 export default App;
