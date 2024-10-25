@@ -11,18 +11,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 } */
-.selected {
-  background-color: #f0f0f0; /* Highlight color */
-}
-.search-bar {
-  position: relative;
-}
-.clear-button {
-  margin-top: 5px;
-  position: absolute;
-  right: 13px;
-  top: calc(7% - 10px);
-}
-input[type="text"] {
-  padding-right: 30px; /* Add space for clear button */
-}

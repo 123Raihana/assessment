@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+# Project Requirements 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1.The project have searchbar in the header along with search button and "Search..." placeholder text.
+2.When user starts typing in the searchbar suggestions will appear in the dropwdown and   text highlighted in the dropdown depends on user inputs and clear button also appear to clear the searchbar text.
+3.User can select suggestions using up arrow and down arrow and press enter to select the corresponding suggestion and dropdown will disappear.
+4.Cross button placed in the right corner of the input search bar to clear the texts inside the searchbar.
+5.When user click search button, related data will fetch and display in the body of the page.
 
-## Available Scripts
+# Tools Used
 
-In the project directory, you can run:
+Technologies : React, Typescript, Bootstrap for UI creation and RTL used for Testing the component behavior.
 
-### `npm start`
+# Responsive Web Design
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+project created with responsiveness for all devices.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+# To start application
 
-### `npm test`
+application will start when user give 'npm start' in the terminal and starts running on port [http://localhost:3000].
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+# To test application
 
-### `npm run build`
+'npm test' command to test the application's 'test.tsx' files
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# package.json 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The file which have details of the depencies project will works with.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
