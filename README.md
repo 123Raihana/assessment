@@ -27,3 +27,5 @@ application will start when user give 'npm start' in the terminal and starts run
 The file which have details of the depencies project will works with.
 
 
+    // "@testing-library/react": "^13.4.0",
+    <!-- disabled={query.trim() ===""} -->

@@ -1,15 +1,22 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import SearchBar from '../../components/SearchBar'
+import SearchBar from '../SearchBar'
 
+let alertMessage: string | undefined;
 describe('Search Component', () => {
 
   beforeEach(() => {
+    jest.spyOn(window, 'alert').mockImplementation((message) => {
+      alertMessage = message;
+    });
     render(<SearchBar onClear={function (): void {
       throw new Error('Function not implemented.');
     }} />);
 
 
   })
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
   test('renders Search Component in the application', () => {
     const exampleComponentElement = screen.getByTestId('searchbar_test');
     expect(exampleComponentElement).toBeInTheDocument();
@@ -40,7 +47,9 @@ describe('Search Component', () => {
     const searchElement = screen.getByTestId('search-element') as HTMLInputElement;
     expect(searchElement).toBeInTheDocument();
     fireEvent.click(searchElement);
+    expect(alertMessage).toBe('please enter value');
   })
+
 })
 
 

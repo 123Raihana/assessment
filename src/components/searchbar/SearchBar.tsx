@@ -1,12 +1,10 @@
 import React, { useState, useEffect, KeyboardEvent, useRef } from 'react';
-import '../components/SearchBar.css';
-import cross from '../../src/asset/cross.png';
-import Search from '../asset/Search.png';
-import styled from 'styled-components'
+import '../searchbar/SearchBar.css';
+import cross from '../../asset/cross.png';
+import Search from '../../asset/Search.png';
+import Suggestion from '../dropdown/Suggestion';
 
-const SuggestionItem = styled.div`
-  padding: 5px;
-`;
+
 type SearchResult = {
   DocumentId: number;
   DocumentTitle: {
@@ -74,18 +72,20 @@ const SearchBar: React.FC<ResultsProps> = ({ onClear }) => {
     };
     fetchData();
   }, []);
-
-  const handleSuggestionClick = (suggestion: string) => {
-    setQuery(suggestion);
+  const handleSuggestionClick = (suggestions: string) => {
+    setQuery(suggestions)
+    console.log(suggestions)
     setShowSuggestions(false);
-  };
+  }
   const handleSearch = async () => {
+    // query ===" "?alert('please enter input'):"";
     try {
       const response = await fetch(`https://gist.githubusercontent.com/yuhong90/b5544baebde4bfe9fe2d12e8e5502cbf/raw/44deafab00fc808ed7fa0e59a8bc959d255b9785/queryResult.json?q=${query}`);
       const data = await response.json();
       if (data.length === 0) {
         alert('No results found');
       } else {
+        console.log(query)
         setResults(data.ResultItems);
       }
     } catch (error) {
@@ -93,9 +93,11 @@ const SearchBar: React.FC<ResultsProps> = ({ onClear }) => {
       alert('An error occurred while fetching data. Please try again.');
     }
   };
+  const checkInput = () => {
+    alert("please enter value");
+  }
   const highlightText = (text: string, search: string) => {
-    if (!search.trim()) return text;
-    return text == undefined ? " " :
+    return text === undefined ? " " :
       text.replace(search, (match) => `<strong>${match}</strong>`);
   }
   return (
@@ -118,23 +120,11 @@ const SearchBar: React.FC<ResultsProps> = ({ onClear }) => {
             </button>
           )}
         </>
-        <button className='btn btn btn-primary' style={{ backgroundColor: "#1C76D5" }} onClick={handleSearch} data-testid="search-element" > <img data-testid="image-element" src={Search} alt="search" className='clear-button' />&nbsp;Search</button>
+        <button className='btn btn btn-primary' style={{ backgroundColor: "#1C76D5" }} onClick={query ? handleSearch : checkInput} data-testid="search-element" > <img data-testid="image-element" src={Search} alt="search" className='clear-button' />&nbsp;Search</button>
       </div>
-      {showSuggestions && (
-        <>
-          {[suggestions].map((suggestion, index) => (
-            <div key={index} onClick={() => handleSuggestionClick(suggestion)} className="dropdown" >
-              <SuggestionItem className={selectedSuggestionIndex === 0 ? "selected" : ""} dangerouslySetInnerHTML={{ __html: highlightText(suggestion[0], query) }}></SuggestionItem>
-              <SuggestionItem className={selectedSuggestionIndex === 1 ? "selected" : ""} dangerouslySetInnerHTML={{ __html: highlightText(suggestion[1], query) }}></SuggestionItem>
-              <SuggestionItem className={selectedSuggestionIndex === 2 ? "selected" : ""} dangerouslySetInnerHTML={{ __html: highlightText(suggestion[2], query) }}></SuggestionItem>
-              <SuggestionItem className={selectedSuggestionIndex === 3 ? "selected" : ""} dangerouslySetInnerHTML={{ __html: highlightText(suggestion[3], query) }}></SuggestionItem>
-              <SuggestionItem className={selectedSuggestionIndex === 4 ? "selected" : ""} dangerouslySetInnerHTML={{ __html: highlightText(suggestion[4], query) }}></SuggestionItem>
-              <SuggestionItem className={selectedSuggestionIndex === 5 ? "selected" : ""} dangerouslySetInnerHTML={{ __html: highlightText(suggestion[5], query) }}></SuggestionItem>
-            </div>
-          ))}
-        </>
-      )}
-
+      {
+        showSuggestions && (<Suggestion suggestions={suggestions} clickfunction={handleSuggestionClick} selected={selectedSuggestionIndex} query={query} />)
+      }
       <div className='results'>
         {results.length > 0 && (
           <>
