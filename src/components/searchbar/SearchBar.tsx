@@ -1,3 +1,4 @@
+/*eslint-disable react-hooks/exhaustive-deps*/
 import React, { useState, useEffect, KeyboardEvent, useRef } from 'react';
 import '../searchbar/SearchBar.css';
 import cross from '../../asset/cross.png';
@@ -78,7 +79,6 @@ const SearchBar: React.FC<ResultsProps> = ({ onClear }) => {
     setShowSuggestions(false);
   }
   const handleSearch = async () => {
-    // query ===" "?alert('please enter input'):"";
     try {
       const response = await fetch(`https://gist.githubusercontent.com/yuhong90/b5544baebde4bfe9fe2d12e8e5502cbf/raw/44deafab00fc808ed7fa0e59a8bc959d255b9785/queryResult.json?q=${query}`);
       const data = await response.json();
